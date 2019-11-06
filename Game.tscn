@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Paddle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Goal.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,14 +12,10 @@ position = Vector2( 320, 240 )
 _speed = 128
 
 [node name="Paddle 1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 40, 240 )
+position = Vector2( 39.7101, 255.408 )
 _speed = 64
 
 [node name="Paddle 2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 600, 240 )
+position = Vector2( 597.457, 255.408 )
 _speed = 64
-
-[node name="Goal 2" parent="." instance=ExtResource( 4 )]
-
-[node name="Goal 1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 12, 240 )
+_player = "p2"
