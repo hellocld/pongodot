@@ -13,6 +13,7 @@ func _physics_process(delta):
 	var collision = move_and_collide(_dir * _speed * delta)
 	if collision:
 		print(collision.collider.name)
+		$AnimationPlayer.play("Boop")
 		_dir = _dir.bounce(collision.normal)
 	if position.x >= get_viewport().size.x - _radius or position.x < _radius:
 		_dir.x *= -1
