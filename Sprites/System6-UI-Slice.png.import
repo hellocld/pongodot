@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bg-01.png-e8ad572a0853ba4e35bae544be6d2bdb.stex"
+path="res://.import/System6-UI-Slice.png-5a53d9949ff27b052041ff652938c160.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/bg-01.png"
-dest_files=[ "res://.import/bg-01.png-e8ad572a0853ba4e35bae544be6d2bdb.stex" ]
+source_file="res://Sprites/System6-UI-Slice.png"
+dest_files=[ "res://.import/System6-UI-Slice.png-5a53d9949ff27b052041ff652938c160.stex" ]
 
 [params]
 
