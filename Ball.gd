@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var _speed = 10
 var _dir = Vector2(1, 1)
 var _radius = 0
-
+var _hits = 0
 
 func _ready():
 	reset()
@@ -12,6 +12,9 @@ func _ready():
 func _physics_process(delta):
 	var collision = move_and_collide(_dir * _speed * delta)
 	if collision:
+		_hits += 1
+		if _hits % 10 == 0:
+			_speed += 2
 		print(collision.collider.name)
 		$AnimationPlayer.play("Boop")
 		_dir = _dir.bounce(collision.normal)
@@ -26,3 +29,4 @@ func reset():
 	position = get_viewport().size / 2
 	var shape = $CollisionShape2D.shape as CircleShape2D
 	_radius = shape.radius
+	_hits = 0
