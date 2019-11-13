@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/bg-01.png" type="Texture" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://Paddle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Goal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/System6-UI-Slice.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/Chicago.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 8 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,5 +43,32 @@ _player = "p2"
 position = Vector2( 8, 171 )
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
+
+[node name="LabelPanel" type="NinePatchRect" parent="."]
+margin_left = 128.0
+margin_top = 107.0
+margin_right = 384.0
+margin_bottom = 235.0
+texture = ExtResource( 7 )
+patch_margin_left = 4
+patch_margin_top = 12
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="LabelPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 9.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "GET READY"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 [connection signal="body_entered" from="Goal 1" to="." method="_on_Goal_1_body_entered"]
 [connection signal="body_entered" from="Goal 2" to="." method="_on_Goal_2_body_entered"]

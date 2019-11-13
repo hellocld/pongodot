@@ -10,9 +10,24 @@ func _ready():
 	p1_score = 0
 	p2_score = 0
 
+func _reset():
+	$LabelPanel/Label.text = "GET READY"
+	$LabelPanel.visible = true
+	$Timer.connect("timeout", self, "_start_game")
+	$Timer.one_shot = true
+	$Timer.start(5)
+
+
+func _start_game():
+	$LabelPanel.visible = false
+	
+	$Ball.reset()
+	
+
 func _print_score():
 	$HUD/Score.text = "%02d | %02d" % [p1_score, p2_score]
 	print("P1 %d | P2 %d" % [p1_score, p2_score])
+
 
 func _on_Goal_1_body_entered(area):
 	if area == $Ball:
