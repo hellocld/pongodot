@@ -37,10 +37,12 @@ func _on_Goal_1_body_entered(area):
 	if area == $Ball:
 		$GoalSFX.play()
 		$Ball.free()
-		p2_score += 1
+		p1_score += 1
 		_print_score()
-		if p2_score >= game_score:
-			print("P2 Wins!")
+		if p1_score >= game_score:
+			print("P1 Wins!")
+			$LabelPanel/Label.text = "P1 WINS!"
+			_game_over()
 		else:
 			_reset()
 
@@ -49,9 +51,22 @@ func _on_Goal_2_body_entered(area):
 	if area == $Ball:
 		$GoalSFX.play()
 		$Ball.free()
-		p1_score += 1
+		p2_score += 1
 		_print_score()
-		if p1_score >= game_score:
-			print("P1 Wins!")
+		if p2_score >= game_score:
+			print("P2 Wins!")
+			$LabelPanel/Label.text = "P2 WINS!"
+			_game_over()
 		else:
 			_reset()
+			
+func _game_over():
+	$LabelPanel.visible = true
+	$Timer.disconnect("timeout", self, "_start_game")
+	$Timer.connect("timeout", self, "_game_over_load")
+	$Timer.one_shot = true
+	$Timer.start(3)
+
+
+func _game_over_load():
+	get_tree().change_scene("res://MainMenu.tscn")
