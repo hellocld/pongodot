@@ -2,16 +2,16 @@
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/bg-01.png" type="Texture" id=2]
-[ext_resource path="res://Ball.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Paddle.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Goal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Sprites/System6-UI-Slice.png" type="Texture" id=7]
-[ext_resource path="res://Fonts/Chicago.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Paddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/System6-UI-Slice.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/Chicago.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Sounds/goal.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
-font_data = ExtResource( 8 )
+font_data = ExtResource( 7 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,33 +23,29 @@ margin_bottom = 342.0
 texture = ExtResource( 2 )
 stretch_mode = 2
 
-[node name="Ball" parent="." instance=ExtResource( 3 )]
-position = Vector2( 256, 171 )
-_speed = 128
-
-[node name="Paddle 1" parent="." instance=ExtResource( 4 )]
+[node name="Paddle 1" parent="." instance=ExtResource( 3 )]
 position = Vector2( 26, 171 )
 _speed = 64
 
-[node name="Goal 1" parent="." instance=ExtResource( 5 )]
+[node name="Goal 1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 504, 171 )
 
-[node name="Paddle 2" parent="." instance=ExtResource( 4 )]
+[node name="Paddle 2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 486, 171 )
 _speed = 64
 _player = "p2"
 
-[node name="Goal 2" parent="." instance=ExtResource( 5 )]
+[node name="Goal 2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 8, 171 )
 
-[node name="HUD" parent="." instance=ExtResource( 6 )]
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="LabelPanel" type="NinePatchRect" parent="."]
 margin_left = 128.0
 margin_top = 107.0
 margin_right = 384.0
 margin_bottom = 235.0
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 patch_margin_left = 4
 patch_margin_top = 12
 patch_margin_right = 4
@@ -70,5 +66,8 @@ autowrap = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="GoalSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 [connection signal="body_entered" from="Goal 1" to="." method="_on_Goal_1_body_entered"]
 [connection signal="body_entered" from="Goal 2" to="." method="_on_Goal_2_body_entered"]
